@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true" scan="true" scanPeriod="1 minutes">
+
+    <property name="APPLICATION_LEVEL" value="INFO"/>
+    <property name="STACK_TRACE_LEVEL_COUNT" value="15"/>
+
+    <property name="PATTERN" scope="context"
+              value="%-7([%level]) %date{yyyy-MM-dd'T'HH:mm:ss.SSS}  thread:[%-25.25(%thread)] client:[%mdc{client_ip}]  %logger{50}.%method@%line:%n\t%message %n"/>
+
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>paasaan.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>paasaan-%d{yyyy-MM-dd_HH}.%i.log.zip</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <MaxFileSize>50MB</MaxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+
+    </appender>
+
+
+    <root>
+        <level value="${APPLICATION_LEVEL}"/>
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ROLLING"/>
+    </root>
+
+</configuration>
