@@ -14,11 +14,19 @@
         <!--<property name="hibernate.connection.url">${jdbc.url}</property>-->
         <!--<property name="hibernate.connection.username">${jdbc.username}</property>-->
         <!--<property name="hibernate.connection.password">${jdbc.password}</property>-->
-        <property name="hibernate.show_sql">false</property>
+        <property name="hibernate.show_sql">true</property>
         <!--<property name="hibernate.current_session_context_class">thread</property> -->
         <!--<property name="hibernate.default_schema"></property>-->
 
-        <!--<property name="hibernate.hbm2ddl.auto">create</property>-->
+        <property name="hibernate.hbm2ddl.auto">create</property>
 
+        <mapping class="ir.paasaan.persistence.entity.User"/>
+        <mapping class="ir.paasaan.persistence.entity.Customer"/>
+        <mapping class="ir.paasaan.persistence.entity.Merchant"/>
+        <mapping class="ir.paasaan.persistence.entity.Discount"/>
+        <mapping class="ir.paasaan.persistence.entity.Group"/>
+        <mapping class="ir.paasaan.persistence.entity.Payment"/>
+        <mapping class="ir.paasaan.persistence.entity.Tag"/>
+        <mapping class="ir.paasaan.persistence.entity.Commission"/>
     </session-factory>
 </hibernate-configuration>
