@@ -33,7 +33,7 @@ public class Payment extends BaseEntity {
     @Lob
     @Column(name = "COMMENT")
     private String comment;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "CUSTOMER_ID")
     private User customer;
     @ManyToOne

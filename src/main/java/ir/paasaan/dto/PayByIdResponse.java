@@ -6,6 +6,7 @@ package ir.paasaan.dto;
  */
 public class PayByIdResponse {
     private String referenceId;
+    private boolean success;
 
     public String getReferenceId() {
         return referenceId;
@@ -20,5 +21,13 @@ public class PayByIdResponse {
         return "PayByIdResponse{" +
                 "referenceId='" + referenceId + '\'' +
                 '}';
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
+    public boolean isSuccess() {
+        return success;
     }
 }

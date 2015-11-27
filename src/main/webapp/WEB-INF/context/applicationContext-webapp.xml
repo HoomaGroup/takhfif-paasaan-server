@@ -17,6 +17,16 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
+    <bean name="paasaanDao" class="ir.paasaan.persistence.dao.impl.PaasaanDaoImpl" abstract="true">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean class="ir.paasaan.persistence.dao.impl.PaymentDaoImpl" parent="paasaanDao"/>
+    <bean class="ir.paasaan.persistence.dao.impl.CommissionDaoImpl" parent="paasaanDao" />
+    <bean class="ir.paasaan.persistence.dao.impl.CustomerDaoImpl" parent="paasaanDao" />
+    <bean class="ir.paasaan.persistence.dao.impl.DiscountDaoImpl" parent="paasaanDao"/>
+    <bean class="ir.paasaan.persistence.dao.impl.MerchantDaoImpl" parent="paasaanDao" />
+
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/paasaan?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=utf8&amp;connectionCollation=utf8_general_ci"/>

@@ -6,7 +6,7 @@ import java.util.List;
  * @author arman
  * @since 11/27/2015.
  */
-public class SearchDiscountRequest {
+public class SearchDiscountRequest extends CustomerBaseRequest {
     private String merchantName;
     private String groupName;
     private Long discountFrom;

@@ -1,6 +1,7 @@
 package ir.paasaan.persistence.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author Boshra Taheri
@@ -8,7 +9,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "MERCHANT")
-@PrimaryKeyJoinColumn(name="USER_ID")
+@PrimaryKeyJoinColumn(name = "USER_ID")
 public class Merchant extends User {
 
     @Column(name = "LATITUDE")
@@ -20,6 +21,9 @@ public class Merchant extends User {
     private Group group;
     @Column(name = "DEPOSIT")
     private String selectedDepositNumber;
+    @OneToMany
+    @JoinColumn(name = "MERCHANT_ID")
+    private List<Discount> discounts;
 
     public Double getLatitude() {
         return latitude;
@@ -51,5 +55,13 @@ public class Merchant extends User {
 
     public void setSelectedDepositNumber(String selectedDepositNumber) {
         this.selectedDepositNumber = selectedDepositNumber;
+    }
+
+    public List<Discount> getDiscounts() {
+        return discounts;
+    }
+
+    public void setDiscounts(List<Discount> discounts) {
+        this.discounts = discounts;
     }
 }

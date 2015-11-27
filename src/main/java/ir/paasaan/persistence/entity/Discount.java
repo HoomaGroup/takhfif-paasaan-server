@@ -25,6 +25,9 @@ public class Discount extends BaseEntity {
     private long reviewsCount;
     @Column(name = "AVERAGE_SCORE")
     private double averageScore;
+    @ManyToOne
+    @JoinColumn(name = "MERCHANT_ID")
+    private Merchant merchant;
 
     @Override
     public Long getId() {
@@ -74,5 +77,13 @@ public class Discount extends BaseEntity {
 
     public void setAverageScore(double averageScore) {
         this.averageScore = averageScore;
+    }
+
+    public Merchant getMerchant() {
+        return merchant;
+    }
+
+    public void setMerchant(Merchant merchant) {
+        this.merchant = merchant;
     }
 }

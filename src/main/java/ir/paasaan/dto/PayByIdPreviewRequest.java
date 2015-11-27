@@ -4,7 +4,7 @@ package ir.paasaan.dto;
  * @author arman
  * @since 11/27/2015.
  */
-public class PayByIdPreviewRequest {
+public class PayByIdPreviewRequest extends CustomerBaseRequest {
     private String paymentId;
 
     public String getPaymentId() {
@@ -19,6 +19,6 @@ public class PayByIdPreviewRequest {
     public String toString() {
         return "PayByIdPreviewRequest{" +
                 "paymentId='" + paymentId + '\'' +
-                '}';
+                "} " + super.toString();
     }
 }
