@@ -10,7 +10,7 @@ public class MerchantInfoResponse {
     private String merchantName;
     private String merchantId;
     private String groupName;
-    private Long discount;
+    private Double discount;
     private List<String> Tags;
     private Long distance;
     private String description;
@@ -41,11 +41,11 @@ public class MerchantInfoResponse {
         this.groupName = groupName;
     }
 
-    public Long getDiscount() {
+    public Double getDiscount() {
         return discount;
     }
 
-    public void setDiscount(Long discount) {
+    public void setDiscount(Double discount) {
         this.discount = discount;
     }
 

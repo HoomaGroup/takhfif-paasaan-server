@@ -2,6 +2,7 @@ package ir.paasaan.service;
 
 import ir.paasaan.dto.*;
 import ir.paasaan.persistence.dao.impl.CustomerDaoImpl;
+import ir.paasaan.persistence.dao.impl.DiscountDaoImpl;
 import ir.paasaan.persistence.dao.impl.MerchantDaoImpl;
 import ir.paasaan.persistence.dao.impl.PaymentDaoImpl;
 import ir.paasaan.persistence.entity.*;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Boshra Taheri
@@ -30,8 +32,11 @@ public class PaasaanServiceImpl implements PaasaanService {
     @Autowired
     private CustomerDaoImpl customerDao;
 
+    @Autowired
+    private DiscountDaoImpl discountDao;
+
     public GeneratePaymentIdResponse generatePaymentId(GeneratePaymentIdRequest request) {
-        Long merchantId = null;
+        Long merchantId;
         GeneratePaymentIdResponse response = new GeneratePaymentIdResponse();
         try {
             merchantId = Long.valueOf(request.getMerchantId());
@@ -93,7 +98,8 @@ public class PaasaanServiceImpl implements PaasaanService {
     }
 
     public SearchDiscountResponse searchDiscount(SearchDiscountRequest request) {
-        return new SearchDiscountResponse();
+        List<Discount> discounts = discountDao.find(request.getDiscountFrom(), request.getDistanceLessThan(), request.getGroupName(), request.getMerchantName(), request.getTags());
+        return Assembler.convertToDiscountResponse(discounts);
     }
 
     public SearchPaymentResponse searchPayment(SearchPaymentRequest request) {
