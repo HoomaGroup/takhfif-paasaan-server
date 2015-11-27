@@ -28,6 +28,8 @@ public class Discount extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "MERCHANT_ID")
     private Merchant merchant;
+    @Column(name = "DESCRIPTION")
+    private String description;
 
     @Override
     public Long getId() {
@@ -85,5 +87,13 @@ public class Discount extends BaseEntity {
 
     public void setMerchant(Merchant merchant) {
         this.merchant = merchant;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
