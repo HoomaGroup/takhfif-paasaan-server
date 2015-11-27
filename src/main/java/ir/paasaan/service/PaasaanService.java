@@ -1,7 +1,6 @@
 package ir.paasaan.service;
 
-import ir.paasaan.dto.GeneratePaymentIdRequest;
-import ir.paasaan.dto.GeneratePaymentIdResponse;
+import ir.paasaan.dto.*;
 
 /**
  * @author Boshra Taheri
@@ -9,4 +8,12 @@ import ir.paasaan.dto.GeneratePaymentIdResponse;
  */
 public interface PaasaanService {
     GeneratePaymentIdResponse generatePaymentId(GeneratePaymentIdRequest request);
+
+    PayByIdPreviewResponse payByIdPreview(PayByIdPreviewRequest request);
+
+    PayByIdResponse payById(PayByIdRequest request);
+
+    SearchDiscountResponse searchDiscount(SearchDiscountRequest request);
+
+    SearchPaymentResponse searchPayment(SearchPaymentRequest request);
 }

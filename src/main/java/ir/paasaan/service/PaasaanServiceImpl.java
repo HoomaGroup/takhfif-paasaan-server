@@ -1,7 +1,6 @@
 package ir.paasaan.service;
 
-import ir.paasaan.dto.GeneratePaymentIdRequest;
-import ir.paasaan.dto.GeneratePaymentIdResponse;
+import ir.paasaan.dto.*;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,5 +17,21 @@ public class PaasaanServiceImpl implements PaasaanService {
         GeneratePaymentIdResponse response = new GeneratePaymentIdResponse();
         response.setPaymentId("12345678");
         return response;
+    }
+
+    public PayByIdPreviewResponse payByIdPreview(PayByIdPreviewRequest request) {
+        return new PayByIdPreviewResponse();
+    }
+
+    public PayByIdResponse payById(PayByIdRequest request) {
+        return new PayByIdResponse();
+    }
+
+    public SearchDiscountResponse searchDiscount(SearchDiscountRequest request) {
+        return new SearchDiscountResponse();
+    }
+
+    public SearchPaymentResponse searchPayment(SearchPaymentRequest request) {
+        return new SearchPaymentResponse();
     }
 }
