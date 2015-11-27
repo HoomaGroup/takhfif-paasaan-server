@@ -67,7 +67,9 @@ public class Payment extends BaseEntity {
     }
 
     public String getGeneratedPaymentId() {
-        return generatedPaymentId;
+        //todo return fixed Size generatedPaymentId
+        if (id == null) return null;
+        return String.valueOf(id);
     }
 
     public void setGeneratedPaymentId(String generatedPaymentId) {

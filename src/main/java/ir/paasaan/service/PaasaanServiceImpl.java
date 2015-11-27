@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -38,7 +39,7 @@ public class PaasaanServiceImpl implements PaasaanService {
             return response;
         }
         Merchant merchant = merchantDao.get(merchantId);
-        if(merchant == null){
+        if (merchant == null) {
             return response;
         }
         Payment payment = new Payment();
@@ -48,13 +49,13 @@ public class PaasaanServiceImpl implements PaasaanService {
         payment.setAmount(request.getAmount());
         payment.setStatus(PaymentStatus.PENDING);
         paymentDao.saveOrUpdate(payment);
-        response.setPaymentId(String.valueOf(payment.getId()));
+        response.setPaymentId(String.valueOf(payment.getGeneratedPaymentId()));
         return response;
     }
 
     public PayByIdPreviewResponse payByIdPreview(PayByIdPreviewRequest request) {
         PayByIdPreviewResponse payByIdPreviewResponse = new PayByIdPreviewResponse();
-        Payment payment = paymentDao.getPaymentsInfo(request.getPaymentId());
+        Payment payment = paymentDao.getPaymentsInfo(request.getPaymentId(), PaymentStatus.PENDING);
         if (payment != null) {
             payByIdPreviewResponse.setAmount(payment.getAmount());
             payByIdPreviewResponse.setMerchantName(payment.getDiscount().getMerchant().getName());
@@ -73,7 +74,7 @@ public class PaasaanServiceImpl implements PaasaanService {
             return response;
         }
         Customer customer = customerDao.get(request.getCustomerId());
-        if (customer == null){
+        if (customer == null) {
             return response;
         }
         Payment payment = paymentDao.get(paymentId);
@@ -82,9 +83,9 @@ public class PaasaanServiceImpl implements PaasaanService {
         payment.setComment(request.getComment());
         payment.setStatus(PaymentStatus.DONE);//todo add Pending Service Status
         payment.setPaymentDate(new Date());
-        payment.setReferenceNumber(paymentId.toString() +
-                payment.getDiscount().getMerchant().getId() +
-                payment.getCustomer().getId());
+        payment.setReferenceNumber(payment.getGeneratedPaymentId() + "-" +
+                payment.getDiscount().getId() + "-" +
+                payment.getId());
         paymentDao.saveOrUpdate(payment);
         //todo important must Service call from in bank
         response.setSuccess(true);
@@ -96,6 +97,11 @@ public class PaasaanServiceImpl implements PaasaanService {
     }
 
     public SearchPaymentResponse searchPayment(SearchPaymentRequest request) {
-        return new SearchPaymentResponse();
+        SearchPaymentResponse searchPaymentResponse = new SearchPaymentResponse();
+        Payment paymentInfo = paymentDao.getPaymentsInfo(request.getPaymentId(), Assembler.convertToStatus(request.getPaymentStatus()));
+        ArrayList<PaymentInfo> paymentInfos = new ArrayList<>();
+        paymentInfos.add(Assembler.convertToPaymentInfo(paymentInfo));
+        searchPaymentResponse.setPaymentInfos(paymentInfos);
+        return searchPaymentResponse;
     }
 }
