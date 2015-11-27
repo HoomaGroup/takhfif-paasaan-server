@@ -1,5 +1,6 @@
 package ir.paasaan.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,7 +9,7 @@ import java.util.List;
  */
 public class SearchDiscountResponse {
 
-   private List<MerchantInfoResponse> merchantInfos;
+   private List<MerchantInfoResponse> merchantInfos = new ArrayList<MerchantInfoResponse>();
 
     public List<MerchantInfoResponse> getMerchantInfos() {
         return merchantInfos;

@@ -1,56 +1,29 @@
 package ir.paasaan.dto;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author arman
  * @since 11/27/2015.
  */
 public class SearchPaymentResponse {
-    private String paymentId;
-    private BigDecimal amount;
-    private Date paymentDate;
-    private String customerName;
-    private CustomerPaymentStatus paymentStatus;
+   private List<PaymentInfo> paymentInfos = new ArrayList<PaymentInfo>();
 
-    public String getPaymentId() {
-        return paymentId;
+    public List<PaymentInfo> getPaymentInfos() {
+        return paymentInfos;
     }
 
-    public void setPaymentId(String paymentId) {
-        this.paymentId = paymentId;
+    public void setPaymentInfos(List<PaymentInfo> paymentInfos) {
+        this.paymentInfos = paymentInfos;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public Date getPaymentDate() {
-        return paymentDate;
-    }
-
-    public void setPaymentDate(Date paymentDate) {
-        this.paymentDate = paymentDate;
-    }
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    public CustomerPaymentStatus getPaymentStatus() {
-        return paymentStatus;
-    }
-
-    public void setPaymentStatus(CustomerPaymentStatus paymentStatus) {
-        this.paymentStatus = paymentStatus;
+    @Override
+    public String toString() {
+        return "SearchPaymentResponse{" +
+                "paymentInfos=" + paymentInfos +
+                '}';
     }
 }
