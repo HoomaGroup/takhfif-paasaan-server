@@ -104,7 +104,7 @@ public class PaasaanServiceImpl implements PaasaanService {
 
     public SearchPaymentResponse searchPayment(SearchPaymentRequest request) {
         SearchPaymentResponse searchPaymentResponse = new SearchPaymentResponse();
-        Payment paymentInfo = paymentDao.getPaymentsInfo(request.getPaymentId(), Assembler.convertToStatus(request.getPaymentStatus()));
+        Payment paymentInfo = paymentDao.getPaymentsInfo(request.getPaymentId(), Assembler.convertToStatus(request.getPaymentStatus()), request.getMerchantId());
         ArrayList<PaymentInfo> paymentInfos = new ArrayList<>();
         paymentInfos.add(Assembler.convertToPaymentInfo(paymentInfo));
         searchPaymentResponse.setPaymentInfos(paymentInfos);
