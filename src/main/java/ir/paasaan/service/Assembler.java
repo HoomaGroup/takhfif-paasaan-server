@@ -15,10 +15,7 @@ import java.util.List;
  */
 public class Assembler {
     public static PaymentStatus convertToStatus(CustomerPaymentStatus paymentStatus) {
-        if (paymentStatus == null) {
-            return PaymentStatus.DONE;
-        }
-        switch (paymentStatus) {
+            switch (paymentStatus) {
             case DONE:
                 return PaymentStatus.DONE;
             case PENDING:
