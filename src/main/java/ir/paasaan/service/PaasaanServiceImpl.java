@@ -99,7 +99,7 @@ public class PaasaanServiceImpl implements PaasaanService {
 
     public SearchDiscountResponse searchDiscount(SearchDiscountRequest request) {
         List<Discount> discounts = discountDao.find(request.getDiscountFrom(), request.getDistanceLessThan(), request.getGroupName(), request.getMerchantName(), request.getTags());
-        return Assembler.convertToDiscountResponse(discounts);
+        return Assembler.convertToDiscountResponse(discounts,request);
     }
 
     public SearchPaymentResponse searchPayment(SearchPaymentRequest request) {

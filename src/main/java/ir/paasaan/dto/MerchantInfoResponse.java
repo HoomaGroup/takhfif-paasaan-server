@@ -14,8 +14,8 @@ public class MerchantInfoResponse {
     private List<String> Tags;
     private Long distance;
     private String description;
-    private Double x;
-    private Double y;
+    private Double latitude;
+    private Double longitude;
 
     public String getMerchantName() {
         return merchantName;
@@ -73,20 +73,20 @@ public class MerchantInfoResponse {
         this.description = description;
     }
 
-    public Double getX() {
-        return x;
+    public Double getLatitude() {
+        return latitude;
     }
 
-    public void setX(Double x) {
-        this.x = x;
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
     }
 
-    public Double getY() {
-        return y;
+    public Double getLongitude() {
+        return longitude;
     }
 
-    public void setY(Double y) {
-        this.y = y;
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 
     @Override
@@ -99,8 +99,8 @@ public class MerchantInfoResponse {
                 ", Tags=" + Tags +
                 ", distance=" + distance +
                 ", description='" + description + '\'' +
-                ", x=" + x +
-                ", y=" + y +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
                 '}';
     }
 }

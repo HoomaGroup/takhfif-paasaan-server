@@ -11,7 +11,13 @@ import java.util.List;
  */
 public class DiscountDaoImpl extends PaasaanDaoImpl<Discount, Long> {
     public List<Discount> find(Long discountFrom, Long distanceLessThan, String groupName, String merchantName, List<String> tags) {
-        String queryStr = " from Discount d where 1=1 ";
+        String queryStr = " from Discount d ";
+        if (tags != null) {
+            queryStr += " join d.tags t";//conditional
+        }
+
+        queryStr += " where 1=1"; //where clause default
+
         if (discountFrom != null) {
             queryStr += " and  d.customerDiscountPercentage >= :customerDiscountPercentage ";
         }
@@ -22,10 +28,13 @@ public class DiscountDaoImpl extends PaasaanDaoImpl<Discount, Long> {
             queryStr += " and d.merchant.name = :merchantName ";
         }
         if (distanceLessThan != null) {
-
+            //todo search in database for better performance
         }
         if (tags != null) {
-
+            for (int i = 0; i < tags.size(); i++) {
+                String tag = tags.get(i);
+                queryStr += " and t.tag = :tag" + i + " ";
+            }
         }
         Query query = getSessionFactory().getCurrentSession().createQuery(queryStr);
 
@@ -39,10 +48,13 @@ public class DiscountDaoImpl extends PaasaanDaoImpl<Discount, Long> {
             query.setParameter("merchantName", merchantName);
         }
         if (distanceLessThan != null) {
-
+        //todo search in database for better performance
         }
         if (tags != null) {
-
+            for (int i = 0; i < tags.size(); i++) {
+                String tag = tags.get(i);
+                query.setParameter("tag" + i, tag);
+            }
         }
         return (List<Discount>) query.list();
     }
