@@ -15,6 +15,9 @@ import java.util.List;
  */
 public class Assembler {
     public static PaymentStatus convertToStatus(CustomerPaymentStatus paymentStatus) {
+         if (paymentStatus == null) {
+            return null;
+        }
             switch (paymentStatus) {
             case DONE:
                 return PaymentStatus.DONE;
