@@ -13,10 +13,15 @@ import java.util.List;
  */
 public class PaymentDaoImpl extends PaasaanDaoImpl<Payment, Long> {
     public Payment getPaymentsInfo(String paymentId, PaymentStatus status) {
-        String queryStr = "from Payment p where p.generatedPaymentId = :generatedPaymentId and p.status= :status";
+        String queryStr = "from Payment p where p.generatedPaymentId = :generatedPaymentId ";
+        if(status != null){
+            queryStr +=" and p.status= :status";
+        }
         Query query = getSessionFactory().getCurrentSession().createQuery(queryStr);
         query.setParameter("generatedPaymentId", paymentId);
-        query.setParameter("status", status);
+        if(status != null){
+            query.setParameter("status", status);
+        }
         return (Payment) query.uniqueResult();
     }
 }
