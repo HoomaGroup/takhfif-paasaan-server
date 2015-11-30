@@ -37,7 +37,7 @@ public class Assembler {
         }
         paymentInfo.setPaymentDate(payment.getPaymentDate());
         paymentInfo.setAmount(payment.getAmount());
-        paymentInfo.setCustomerName(payment.getCustomer().getName());
+        paymentInfo.setCustomerName(payment.getCustomer() != null ? payment.getCustomer().getName() : null);
         paymentInfo.setPaymentId(payment.getGeneratedPaymentId());
         paymentInfo.setPaymentDate(payment.getPaymentDate());
         paymentInfo.setPaymentStatus(Assembler.convertToStatus(payment.getStatus()));

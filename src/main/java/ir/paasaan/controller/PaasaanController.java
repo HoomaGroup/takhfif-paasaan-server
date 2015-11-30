@@ -59,4 +59,16 @@ public class PaasaanController {
             throw e;
         }
     }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/searchPayment")
+    public
+    @ResponseBody
+    SearchPaymentResponse searchPayment(@RequestBody SearchPaymentRequest request) throws Exception {
+        try {
+            return paasaanService.searchPayment(request);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
 }

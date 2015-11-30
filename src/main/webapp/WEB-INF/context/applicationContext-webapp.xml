@@ -30,10 +30,20 @@
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/paasaan?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=utf8&amp;connectionCollation=utf8_general_ci"/>
-        <property name="username" value="paasaan"/>
-        <property name="password" value="paasaan"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
         <property name="poolName" value="PaasaanCP"/>
         <property name="maximumPoolSize" value="2"/>
         <property name="registerMbeans" value="true"/>
+    </bean>
+
+    <bean
+            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix">
+            <value>/WEB-INF/views/jsp/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
     </bean>
 </beans>

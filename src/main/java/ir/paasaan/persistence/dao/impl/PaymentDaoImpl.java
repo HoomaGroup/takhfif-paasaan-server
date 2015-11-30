@@ -3,6 +3,7 @@ package ir.paasaan.persistence.dao.impl;
 import ir.paasaan.persistence.entity.Payment;
 import ir.paasaan.persistence.entity.PaymentStatus;
 import ir.paasaan.persistence.entity.Tag;
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Query;
 
 import java.util.List;
@@ -30,22 +31,22 @@ public class PaymentDaoImpl extends PaasaanDaoImpl<Payment, Long> {
         return (Payment) query.uniqueResult();
     }
 
-    public Payment getPaymentsInfo(String paymentId, PaymentStatus status, String merchantId) {
+    public List<Payment> getPaymentsInfo(String paymentId, PaymentStatus status, String merchantId) {
         String queryStr = "from Payment p where 1=1 and p.discount.merchant.id = :merchantId ";
-        if(paymentId != null){
+        if(StringUtils.isNotEmpty(paymentId)){
             queryStr +=" and p.generatedPaymentId = :generatedPaymentId ";
         }
         if(status != null){
             queryStr +=" and p.status= :status";
         }
         Query query = getSessionFactory().getCurrentSession().createQuery(queryStr);
-        if(paymentId != null){
+        if(StringUtils.isNotEmpty(paymentId)){
             query.setParameter("generatedPaymentId", paymentId);
         }
         if(status != null){
             query.setParameter("status", status);
         }
-        query.setParameter("merchantId", merchantId);
-        return (Payment) query.uniqueResult();
+        query.setParameter("merchantId", Long.valueOf(merchantId));
+        return (List<Payment>) query.list();
     }
 }

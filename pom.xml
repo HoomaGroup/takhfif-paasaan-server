@@ -5,7 +5,10 @@
     <groupId>ir.paasaan</groupId>
     <artifactId>paasaan-server</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <modules>
+        <module>admin-console</module>
+    </modules>
+    <packaging>pom</packaging>
 
     <name>paasaan-server</name>
     <url>http://maven.apache.org</url>
